@@ -1,46 +1,61 @@
 package com.offpay.wallet.ui.theme
 
 import android.app.Activity
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = OffpayPrimaryAccent,
-    onPrimary = OffpayBackground,
-    primaryContainer = OffpayPrimaryAccentDim,
-    onPrimaryContainer = OffpayTextPrimary,
-    secondary = OffpaySecondaryAccent,
-    onSecondary = OffpayBackground,
-    secondaryContainer = OffpaySecondaryAccentDim,
-    onSecondaryContainer = OffpayTextPrimary,
-    background = OffpayBackground,
-    onBackground = OffpayTextPrimary,
-    surface = OffpaySurface,
-    onSurface = OffpayTextPrimary,
-    surfaceVariant = OffpaySurfaceElevated,
-    onSurfaceVariant = OffpayTextMuted,
-    outline = OffpaySurfaceBorder,
-    outlineVariant = OffpayTextDisabled,
-    error = OffpayError,
-    onError = OffpayBackground,
-    errorContainer = OffpayErrorDim,
-    onErrorContainer = OffpayTextPrimary
+// Subtle rounding only: 4px on chips/buttons/inputs, 8px on cards
+val WarmEditorialShapes = Shapes(
+    extraSmall = RoundedCornerShape(4.dp),
+    small = RoundedCornerShape(4.dp),
+    medium = RoundedCornerShape(8.dp),
+    large = RoundedCornerShape(8.dp),
+    extraLarge = RoundedCornerShape(8.dp)
+)
+
+private val WarmEditorialColorScheme = lightColorScheme(
+    primary = TerracottaPrimary,
+    onPrimary = WarmCardSurface,
+    primaryContainer = TerracottaWash,
+    onPrimaryContainer = TerracottaPrimary,
+    secondary = SageSecondary,
+    onSecondary = WarmCardSurface,
+    secondaryContainer = SageWash,
+    onSecondaryContainer = SageTextOnWash,
+    tertiary = WarmInfo,
+    onTertiary = WarmCardSurface,
+    tertiaryContainer = WarmInfoWash,
+    onTertiaryContainer = WarmInfo,
+    background = WarmBackground,
+    onBackground = WarmTextPrimary,
+    surface = WarmCardSurface,
+    onSurface = WarmTextPrimary,
+    surfaceVariant = WarmRecessedSurface,
+    onSurfaceVariant = WarmTextSecondary,
+    outline = WarmCardBorder,
+    outlineVariant = WarmRecessedBorder,
+    error = WarmError,
+    onError = WarmCardSurface,
+    errorContainer = WarmErrorWash,
+    onErrorContainer = WarmError
 )
 
 @Composable
 fun OffpayTheme(
-    darkTheme: Boolean = true, // Offpay defaults to dark crypto/wallet theme
+    darkTheme: Boolean = false, // Pure Warm Editorial Tactile light theme
     content: @Composable () -> Unit
 ) {
-    val colorScheme = DarkColorScheme
+    val colorScheme = WarmEditorialColorScheme
     val extendedColors = OffpayExtendedColors()
     val monoTypography = OffpayMonoTypography()
 
@@ -51,8 +66,9 @@ fun OffpayTheme(
             if (window != null) {
                 window.statusBarColor = colorScheme.background.toArgb()
                 window.navigationBarColor = colorScheme.background.toArgb()
-                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
-                WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = false
+                // Enable dark icons on light warm background
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+                WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = true
             }
         }
     }
@@ -63,7 +79,8 @@ fun OffpayTheme(
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = AppTypography,
+            typography = WarmEditorialTypography,
+            shapes = WarmEditorialShapes,
             content = content
         )
     }

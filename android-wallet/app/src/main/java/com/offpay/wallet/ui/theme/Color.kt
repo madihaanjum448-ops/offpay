@@ -4,64 +4,76 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-// Core Palette Tokens
-val OffpayBackground = Color(0xFF0B0F0E)
-val OffpaySurface = Color(0xFF161B1A)
-val OffpaySurfaceElevated = Color(0xFF1E2523)
-val OffpaySurfaceBorder = Color(0xFF27312E)
+// ============================================================================
+// Warm Editorial Tactile Color Palette
+// ============================================================================
 
-// Primary Accent - Green (Settled / Success / Online)
-val OffpayPrimaryAccent = Color(0xFF39FF88)
-val OffpayPrimaryAccentDim = Color(0xFF1F8044)
-val OffpayPrimaryAccentGlow = Color(0x3339FF88)
+// Canvas & Surface
+val WarmBackground = Color(0xFFF7F5F0)
+val WarmCardSurface = Color(0xFFFFFFFF)
+val WarmCardBorder = Color(0xFFE5E1D8)
 
-// Secondary Accent - Amber (Pending / Offline / Armed)
-val OffpaySecondaryAccent = Color(0xFFFFB020)
-val OffpaySecondaryAccentDim = Color(0xFF8A5E11)
-val OffpaySecondaryAccentGlow = Color(0x33FFB020)
+// Recessed / Well Containers (inputs, ledger trays, envelopes)
+val WarmRecessedSurface = Color(0xFFFAF8F5)
+val WarmRecessedBorder = Color(0xFFEFEBE3)
 
 // Text Tokens
-val OffpayTextPrimary = Color(0xFFF2F5F4)
-val OffpayTextMuted = Color(0xFF8A928F)
-val OffpayTextDisabled = Color(0xFF525957)
+val WarmTextPrimary = Color(0xFF1C1B19)
+val WarmTextSecondary = Color(0xFF6B6862)
+val WarmTextMuted = Color(0xFF6B6862)
 
-// Error / Alert Tokens
-val OffpayError = Color(0xFFFF5C5C)
-val OffpayErrorDim = Color(0xFF802E2E)
-val OffpayErrorGlow = Color(0x33FF5C5C)
+// Dividers & Hairlines
+val WarmDivider = Color(0xFFD8D3C8)
 
-// Semantic State Colors
-val OffpaySettled = OffpayPrimaryAccent
-val OffpayOnline = OffpayPrimaryAccent
-val OffpaySuccess = OffpayPrimaryAccent
+// Primary Accent - Terracotta
+val TerracottaPrimary = Color(0xFFC1652F)
+val TerracottaHover = Color(0xFFA85324)
+val TerracottaWash = Color(0xFFFAF0EA)
+val TerracottaGlow = Color(0x33C1652F)
 
-val OffpayPending = OffpaySecondaryAccent
-val OffpayOffline = OffpaySecondaryAccent
-val OffpayArmed = OffpaySecondaryAccent
+// Secondary Accent - Sage Green
+val SageSecondary = Color(0xFF7A8B6F)
+val SageWash = Color(0xFFEFF3ED)
+val SageTextOnWash = Color(0xFF536549)
+
+// Error & Alert
+val WarmError = Color(0xFFA8382B)
+val WarmErrorWash = Color(0xFFFDF1F0)
+
+// Info / Metadata
+val WarmInfo = Color(0xFF465B66)
+val WarmInfoWash = Color(0xFFEFF4F7)
+
+// Semantic State Mappings
+val WarmSettled = SageSecondary
+val WarmOnline = SageSecondary
+val WarmArmed = TerracottaPrimary
+val WarmPending = TerracottaPrimary
 
 /**
- * Extended color tokens for custom Offpay domain-specific UI states.
+ * Extended color tokens for custom Warm Editorial Tactile UI states.
  */
 @Immutable
 data class OffpayExtendedColors(
-    val background: Color = OffpayBackground,
-    val surface: Color = OffpaySurface,
-    val surfaceElevated: Color = OffpaySurfaceElevated,
-    val surfaceBorder: Color = OffpaySurfaceBorder,
-    val primaryAccent: Color = OffpayPrimaryAccent,
-    val primaryAccentDim: Color = OffpayPrimaryAccentDim,
-    val secondaryAccent: Color = OffpaySecondaryAccent,
-    val secondaryAccentDim: Color = OffpaySecondaryAccentDim,
-    val textPrimary: Color = OffpayTextPrimary,
-    val textMuted: Color = OffpayTextMuted,
-    val textDisabled: Color = OffpayTextDisabled,
-    val error: Color = OffpayError,
-    val settled: Color = OffpaySettled,
-    val online: Color = OffpayOnline,
-    val success: Color = OffpaySuccess,
-    val pending: Color = OffpayPending,
-    val offline: Color = OffpayOffline,
-    val armed: Color = OffpayArmed
+    val background: Color = WarmBackground,
+    val cardSurface: Color = WarmCardSurface,
+    val cardBorder: Color = WarmCardBorder,
+    val recessedSurface: Color = WarmRecessedSurface,
+    val recessedBorder: Color = WarmRecessedBorder,
+    val textPrimary: Color = WarmTextPrimary,
+    val textSecondary: Color = WarmTextSecondary,
+    val textMuted: Color = WarmTextMuted,
+    val divider: Color = WarmDivider,
+    val primaryTerracotta: Color = TerracottaPrimary,
+    val primaryTerracottaHover: Color = TerracottaHover,
+    val primaryTerracottaWash: Color = TerracottaWash,
+    val secondarySage: Color = SageSecondary,
+    val secondarySageWash: Color = SageWash,
+    val secondarySageText: Color = SageTextOnWash,
+    val error: Color = WarmError,
+    val errorWash: Color = WarmErrorWash,
+    val info: Color = WarmInfo,
+    val infoWash: Color = WarmInfoWash
 )
 
 val LocalOffpayColors = staticCompositionLocalOf { OffpayExtendedColors() }

@@ -10,202 +10,233 @@ import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 
+// ============================================================================
 // Google Font Provider Setup
+// ============================================================================
+
 val GoogleFontProvider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
     certificates = 0
 )
 
-// Font Definitions with Google Fonts & Fallback
-val SpaceGroteskFont = GoogleFont("Space Grotesk")
-val SpaceGroteskFamily = FontFamily(
-    Font(googleFont = SpaceGroteskFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
-    Font(googleFont = SpaceGroteskFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
-    Font(googleFont = SpaceGroteskFont, fontProvider = GoogleFontProvider, weight = FontWeight.SemiBold),
-    Font(googleFont = SpaceGroteskFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
+// 1. Playfair Display (Serif) for Headings & Display
+val PlayfairDisplayFont = GoogleFont("Playfair Display")
+val PlayfairDisplayFamily = FontFamily(
+    Font(googleFont = PlayfairDisplayFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
+    Font(googleFont = PlayfairDisplayFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
+    Font(googleFont = PlayfairDisplayFont, fontProvider = GoogleFontProvider, weight = FontWeight.SemiBold),
+    Font(googleFont = PlayfairDisplayFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
 )
 
-val InterFont = GoogleFont("Inter")
-val InterFamily = FontFamily(
-    Font(googleFont = InterFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
-    Font(googleFont = InterFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
-    Font(googleFont = InterFont, fontProvider = GoogleFontProvider, weight = FontWeight.SemiBold),
-    Font(googleFont = InterFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
+// 2. Plus Jakarta Sans for Body Text, Buttons, Labels
+val PlusJakartaSansFont = GoogleFont("Plus Jakarta Sans")
+val PlusJakartaSansFamily = FontFamily(
+    Font(googleFont = PlusJakartaSansFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
+    Font(googleFont = PlusJakartaSansFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
+    Font(googleFont = PlusJakartaSansFont, fontProvider = GoogleFontProvider, weight = FontWeight.SemiBold),
+    Font(googleFont = PlusJakartaSansFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
 )
 
-val JetBrainsMonoFont = GoogleFont("JetBrains Mono")
-val JetBrainsMonoFamily = FontFamily(
-    Font(googleFont = JetBrainsMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
-    Font(googleFont = JetBrainsMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
-    Font(googleFont = JetBrainsMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.SemiBold),
-    Font(googleFont = JetBrainsMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
+// 3. Space Mono for Amounts, Addresses, Voucher IDs, Hashes, Nonces
+val SpaceMonoFont = GoogleFont("Space Mono")
+val SpaceMonoFamily = FontFamily(
+    Font(googleFont = SpaceMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.Normal),
+    Font(googleFont = SpaceMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.Medium),
+    Font(googleFont = SpaceMonoFont, fontProvider = GoogleFontProvider, weight = FontWeight.Bold)
 )
 
-// Material 3 Typography using Space Grotesk for Headings and Inter for Body
-val AppTypography = Typography(
-    // Display styles (Headings - Space Grotesk)
+// ============================================================================
+// Material 3 Typography - Warm Editorial
+// ============================================================================
+
+val WarmEditorialTypography = Typography(
+    // Display styles (Serif - Playfair Display)
     displayLarge = TextStyle(
-        fontFamily = SpaceGroteskFamily,
+        fontFamily = PlayfairDisplayFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 57.sp,
-        lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp
+        fontSize = 48.sp,
+        lineHeight = 54.sp,
+        letterSpacing = (-0.5).sp,
+        color = WarmTextPrimary
     ),
     displayMedium = TextStyle(
-        fontFamily = SpaceGroteskFamily,
+        fontFamily = PlayfairDisplayFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 45.sp,
-        lineHeight = 52.sp,
-        letterSpacing = 0.sp
+        fontSize = 38.sp,
+        lineHeight = 44.sp,
+        letterSpacing = (-0.25).sp,
+        color = WarmTextPrimary
     ),
     displaySmall = TextStyle(
-        fontFamily = SpaceGroteskFamily,
+        fontFamily = PlayfairDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 36.sp,
-        lineHeight = 44.sp,
-        letterSpacing = 0.sp
+        fontSize = 30.sp,
+        lineHeight = 36.sp,
+        color = WarmTextPrimary
     ),
 
-    // Headline styles (Headings - Space Grotesk)
+    // Headline styles (Serif - Playfair Display)
     headlineLarge = TextStyle(
-        fontFamily = SpaceGroteskFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 32.sp,
-        lineHeight = 40.sp,
-        letterSpacing = 0.sp
+        fontFamily = PlayfairDisplayFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp,
+        lineHeight = 34.sp,
+        color = WarmTextPrimary
     ),
     headlineMedium = TextStyle(
-        fontFamily = SpaceGroteskFamily,
+        fontFamily = PlayfairDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 28.sp,
-        lineHeight = 36.sp,
-        letterSpacing = 0.sp
+        fontSize = 24.sp,
+        lineHeight = 30.sp,
+        color = WarmTextPrimary
     ),
     headlineSmall = TextStyle(
-        fontFamily = SpaceGroteskFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 24.sp,
-        lineHeight = 32.sp,
-        letterSpacing = 0.sp
+        fontFamily = PlayfairDisplayFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 26.sp,
+        color = WarmTextPrimary
     ),
 
-    // Title styles (Headings / Sub-headings - Space Grotesk)
+    // Title styles (Serif for titles, Plus Jakarta Sans for sub-titles)
     titleLarge = TextStyle(
-        fontFamily = SpaceGroteskFamily,
+        fontFamily = PlayfairDisplayFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        fontSize = 18.sp,
+        lineHeight = 24.sp,
+        color = WarmTextPrimary
     ),
     titleMedium = TextStyle(
-        fontFamily = SpaceGroteskFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.15.sp
+        fontFamily = PlusJakartaSansFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 15.sp,
+        lineHeight = 20.sp,
+        color = WarmTextPrimary
     ),
     titleSmall = TextStyle(
-        fontFamily = SpaceGroteskFamily,
+        fontFamily = PlusJakartaSansFamily,
         fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
+        fontSize = 13.sp,
+        lineHeight = 18.sp,
+        color = WarmTextPrimary
     ),
 
-    // Body styles (Inter)
+    // Body styles (Plus Jakarta Sans)
     bodyLarge = TextStyle(
-        fontFamily = InterFamily,
+        fontFamily = PlusJakartaSansFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 15.sp,
+        lineHeight = 22.sp,
+        color = WarmTextPrimary
     ),
     bodyMedium = TextStyle(
-        fontFamily = InterFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
-    ),
-    bodySmall = TextStyle(
-        fontFamily = InterFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
-    ),
-
-    // Label styles (Inter)
-    labelLarge = TextStyle(
-        fontFamily = InterFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
-    ),
-    labelMedium = TextStyle(
-        fontFamily = InterFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = InterFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-)
-
-/**
- * Custom Typography tokens for monetary amounts and wallet addresses (JetBrains Mono).
- */
-@Immutable
-data class OffpayMonoTypography(
-    val amountLarge: TextStyle = TextStyle(
-        fontFamily = JetBrainsMonoFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 36.sp,
-        lineHeight = 44.sp,
-        letterSpacing = (-0.5).sp
-    ),
-    val amountMedium: TextStyle = TextStyle(
-        fontFamily = JetBrainsMonoFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
-        lineHeight = 32.sp,
-        letterSpacing = 0.sp
-    ),
-    val amountSmall: TextStyle = TextStyle(
-        fontFamily = JetBrainsMonoFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 22.sp,
-        letterSpacing = 0.sp
-    ),
-    val walletAddress: TextStyle = TextStyle(
-        fontFamily = JetBrainsMonoFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
-    ),
-    val walletAddressCompact: TextStyle = TextStyle(
-        fontFamily = JetBrainsMonoFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.25.sp
-    ),
-    val codeBlock: TextStyle = TextStyle(
-        fontFamily = JetBrainsMonoFamily,
+        fontFamily = PlusJakartaSansFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
         lineHeight = 18.sp,
-        letterSpacing = 0.sp
+        color = WarmTextSecondary
+    ),
+    bodySmall = TextStyle(
+        fontFamily = PlusJakartaSansFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 11.sp,
+        lineHeight = 16.sp,
+        color = WarmTextMuted
+    ),
+
+    // Label styles (Plus Jakarta Sans)
+    labelLarge = TextStyle(
+        fontFamily = PlusJakartaSansFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 13.sp,
+        lineHeight = 18.sp,
+        letterSpacing = 0.5.sp,
+        color = WarmTextPrimary
+    ),
+    labelMedium = TextStyle(
+        fontFamily = PlusJakartaSansFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 11.sp,
+        lineHeight = 15.sp,
+        letterSpacing = 0.4.sp,
+        color = WarmTextSecondary
+    ),
+    labelSmall = TextStyle(
+        fontFamily = PlusJakartaSansFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 9.sp,
+        lineHeight = 13.sp,
+        letterSpacing = 0.8.sp,
+        color = WarmTextMuted
+    )
+)
+
+// Legacy alias to maintain full backward compatibility
+val AppTypography = WarmEditorialTypography
+
+/**
+ * Monospace Typography tokens for amounts, addresses, voucher IDs, and cryptographic hashes (Space Mono).
+ */
+@Immutable
+data class OffpayMonoTypography(
+    val amountHuge: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 44.sp,
+        lineHeight = 48.sp,
+        letterSpacing = (-1).sp,
+        color = WarmTextPrimary
+    ),
+    val amountLarge: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 34.sp,
+        lineHeight = 38.sp,
+        letterSpacing = (-0.5).sp,
+        color = WarmTextPrimary
+    ),
+    val amountMedium: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        lineHeight = 28.sp,
+        color = WarmTextPrimary
+    ),
+    val amountSmall: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        lineHeight = 18.sp,
+        color = WarmTextPrimary
+    ),
+    val voucherId: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 11.sp,
+        lineHeight = 15.sp,
+        color = WarmTextMuted
+    ),
+    val walletAddress: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        color = WarmTextSecondary
+    ),
+    val walletAddressCompact: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 11.sp,
+        lineHeight = 15.sp,
+        color = WarmTextSecondary
+    ),
+    val hashOrProof: TextStyle = TextStyle(
+        fontFamily = SpaceMonoFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp,
+        lineHeight = 14.sp,
+        color = WarmTextMuted
     )
 )
 
